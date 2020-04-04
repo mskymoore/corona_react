@@ -1,19 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import Location from '../components/Location';
+import { Card } from 'antd';
 
 
 class LocationDetail extends React.Component {
 
     state = {
-        locations: []
+        location: {}
     }
 
     componentDidMount(){
-        axios.get('http://333.isos.tech:8888/api/')
+        const locationID = this.props.match.params.locationID
+        axios.get(`http://333.isos.tech:8888/api/${locationID}`)
         .then(res => {
             this.setState({
-                locations: res.data
+                location: res.data
             });
             console.log(res.data)
 
@@ -22,7 +23,12 @@ class LocationDetail extends React.Component {
     }
     render() {
         return (
-                <Location data={this.state.locations}/>
+            <Card title={this.state.location.friendly_name} extra={<a href="/">Info</a>} style={{ width: '100%' }}>
+                <p>{this.state.location.county}</p>
+                <p>{this.state.location.province_state}</p>
+                <p>{this.state.location.region_country}</p>
+                <p>{this.state.location.friendly_hash}</p>
+            </Card>
         )
     }
 }

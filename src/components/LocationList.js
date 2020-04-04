@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Divider, Card } from 'antd';
 
-const Location = (props) => {
+const LocationList = (props) => {
     return(
         <>
         <Divider orientation="left"></Divider>
@@ -24,4 +24,4 @@ const Location = (props) => {
     )
 }
 
-export default Location;
+export default LocationList;

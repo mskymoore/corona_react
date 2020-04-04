@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Location from '../components/Location';
+import LocationList from '../components/LocationList';
 
 
-class LocationList extends React.Component {
+class LocationListView extends React.Component {
 
     state = {
         locations: []
@@ -22,9 +22,9 @@ class LocationList extends React.Component {
     }
     render() {
         return (
-                <Location data={this.state.locations}/>
+                <LocationList data={this.state.locations}/>
         )
     }
 }
 
-export default LocationList;
+export default LocationListView;
