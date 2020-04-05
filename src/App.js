@@ -15,6 +15,15 @@ function App() {
       <CustomLayout></CustomLayout>
       <Route exact path='/' component={LocationListView}/>
       <Route exact path='/location/:locationID' component={LocationDetail}/>
+      <Route exact path='/province_states' />
+      <Route exact path='/provine_state/:province_stateID' />
+      <Route exact path='/country_regions' />
+      <Route exact path='/country_region/:country_regionID' />
+      <Route exact path='/counties' />
+      <Route exact path='/county/:countyID' />
+      <Route exact path='/historic_entries' />
+      <Route exact path='/historic_entry/:historic_entryID' />
+      <Route exact path='/plot/:plotID' />
       </div>
       </BrowserRouter>
     </div>
