@@ -17,6 +17,7 @@ export default function PlotsListView(location) {
 
                                }
                   )
+                 }
     )
 
     
