@@ -3,6 +3,7 @@ import './App.css';
 import CustomLayout from './containers/Layout';
 import { BrowserRouter, Route } from 'react-router-dom';
 import PlotsListView from './containers/PlotsListView';
+import AutocompleteLocation from './components/AutocompleteLocation'
 
 
 
@@ -12,8 +13,8 @@ export default function App() {
       <BrowserRouter>
         <div>
             <CustomLayout></CustomLayout>
-            <Route exact path='/' component={CustomLayout}/>
-            <Route exact path='/location/:locationFriendlyHash' component={CustomLayout}/>
+            <Route exact path='/' component={AutocompleteLocation}/>
+            <Route exact path='/location/:locationFriendlyHash'/>
             <Route exact path='/province_states' />
             <Route exact path='/province_state/:province_state' />
             <Route exact path='/country_regions' />
@@ -22,7 +23,7 @@ export default function App() {
             <Route exact path='/county/:county' />
             <Route exact path='/historic_entries' />
             <Route exact path='/historic_entry/:historic_entryID' />
-            <Route exact path='/plots/:locationFriendlyHash' component={PlotsListView} />
+            <Route exact path='/plots/:locationFriendlyHash'/>
         </div>
       </BrowserRouter>
     </div>
