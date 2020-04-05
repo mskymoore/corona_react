@@ -12,14 +12,13 @@ export default class LocationDetail extends React.Component {
         const locationID = this.props.match.params.locationID
         axios.get(`http://333.isos.tech:8888/api/location/${locationID}`)
         .then(res => {
-            this.setState({
-                location: res.data
-            });
-            console.log(res.data)
+                      this.setState({location: res.data});
+                      console.log(res.data)
 
-        }
-            )
+                     }
+             )
     }
+    
     render() {
         return (
             <div>
