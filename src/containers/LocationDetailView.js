@@ -22,11 +22,14 @@ class LocationDetail extends React.Component {
     }
     render() {
         return (
-        <Card style={{ width: '100%' }}>
+            <Card style={{ width: '100%' }}>
                 <p>{this.state.location.county}</p>
                 <p>{this.state.location.province_state}</p>
                 <p>{this.state.location.region_country}</p>
+                <p>{this.state.location.friendly_name}</p>
                 <p>{this.state.location.friendly_hash}</p>
+                <p>{this.state.location.latitude}</p>
+                <p>{this.state.location.longitude}</p>
             </Card>
         )
     }

@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -21,24 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const message = `test message`;
 
 export default function CustomLayout(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-            <Avatar>W</Avatar>
-          </Grid>
-          <Grid item xl zeroMinWidth>
-            <Typography noWrap>{message}</Typography>
             {props.children}
-          </Grid>
-        </Grid>
-      </Paper>
     </div>
   );
 }
