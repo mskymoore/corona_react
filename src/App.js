@@ -2,10 +2,7 @@ import React from 'react';
 import './App.css';
 import CustomLayout from './containers/Layout';
 import { BrowserRouter, Route } from 'react-router-dom';
-import LocationListView from './containers/LocationListView';
-import LocationDetail from './containers/LocationDetailView';
-import Plot from './containers/PlotView';
-import PlotsListView from './contianers/PlotsListView';
+import PlotsListView from './containers/PlotsListView';
 
 
 
@@ -25,8 +22,7 @@ export default function App() {
             <Route exact path='/county/:county' />
             <Route exact path='/historic_entries' />
             <Route exact path='/historic_entry/:historic_entryID' />
-            <Route exact path='/plot/:plotName' component={Plot} />
-            <Route exact path='/plots/:plotNames' component={PlotsListView} />
+            <Route exact path='/plots/:locationFriendlyHash' component={PlotsListView} />
         </div>
       </BrowserRouter>
     </div>

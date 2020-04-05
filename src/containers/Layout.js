@@ -10,6 +10,8 @@ export default class CustomLayout extends React.Component {
     locations: {}
   }
 
+  
+
   componentDidMount(){
     
     if (this.props.match.params.locationFriendlyHash){
@@ -36,7 +38,7 @@ export default class CustomLayout extends React.Component {
       return (
         <div className={classes.root}>
                 <LocationAutocomplete id='autocomplete' data={this.state.locations} />
-                <PlotsListView />
+                <PlotsListView data={this.state.location} />
                 
         </div>
       );

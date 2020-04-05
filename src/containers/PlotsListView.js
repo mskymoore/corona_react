@@ -1,31 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import PlotsList from '../components/PlotsList';
 
-export default class PlotsListView extends React.Component {
 
-    state = {
-        plots: []
-    }
+
+export default function PlotsListView(location) {
+    const [plots, setPlots] = useState([]);
+
+    axios.get(`http://333.isos.tech:8888/api/plots_gen/?friendly_hash=${location.friendly_hash}`)
+    .then(res => {
+                  console.log(res.data)
+                  axios.get(`http://333.isos.tech:8888/api/plots/${location.friendly_hash}`)
+                  .then(res => {
+                                setPlots(res.data)
+                                console.log(res.data);
+
+                               }
+                  )
+                 }
+    )
+
     
-    componentDidMount(){
-        if (this.props.match.params.plotNames){
-            const plotNames = this.props.match.params.plotNames
-            axios.get(`http://333.isos.tech:8888/api/plots/${plotNames}`)
-            .then(res => {
-                          this.setState({plots: res.data});
-                          console.log(res.data);
 
-                         }
-                 )
-        }
-    }
-
-    render() {
-        return (
-            <div>
-            <PlotsList data={this.state.plots}/>
-            </div>
-        )
-    }
+    return (
+        <div>
+        <PlotsList data={plots}/>
+        </div>
+    )
 }
