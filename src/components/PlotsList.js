@@ -5,6 +5,8 @@ import Plot from './Plot';
 
 
 export default function PlotsList(props) {
+    console.log('propslist') 
+    console.log(props)
     return(
      <List>
         {

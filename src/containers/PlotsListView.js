@@ -10,14 +10,13 @@ export default function PlotsListView(location) {
     axios.get(`http://172.31.25.48:8888/api/plots_gen/?friendly_hash=${location.data}`)
     .then(res => {
                   console.log(res.data)
-                  axios.get(`http://172.31.25.48:8888/api/plots/${location.data}`)
+                  axios.get(`http://172.31.25.48:8888/api/plots/${location.data}confirmed`)
                   .then(res => {
                                 setPlots(res.data)
                                 console.log(res.data);
 
                                }
                   )
-                 }
     )
 
     
