@@ -34,12 +34,26 @@ export default class CustomLayout extends React.Component {
          );
   }
 
+  handleChange = location =>{
+    this.setState({location})
+  }
+
   render(){
       return (
         <div className={classes.root}>
-                <LocationAutocomplete id='autocomplete' data={this.state.locations} />
-                <PlotsListView data={this.state.location} />
-                
+            <div>
+                <Autocomplete
+                  id="combo-box-demo"
+                  options={this.state.locations}
+                  getOptionLabel={(option) => option.friendly_name}
+                  groupBy={(option) => option.firstLetter}
+                  style={{ width: 300 }}
+                  value={location}
+                  renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined"/>}
+                  onChange={this.handleChange}
+                ></Autocomplete>
+            </div>
+            <PlotsListView data={this.state.location} />
         </div>
       );
   }
