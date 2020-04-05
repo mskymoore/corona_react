@@ -1,17 +1,22 @@
 import React from 'react';
-import BaseRouter from './routes';
-import BrowserRouter from 'react-router-dom';
 import './App.css';
-import 'antd/dist/antd.css';
 import CustomLayout from './containers/Layout';
+import { BrowserRouter, Route } from 'react-router-dom';
+import LocationListView from './containers/LocationListView';
+import LocationDetail from './containers/LocationDetailView';
+
 
 
 function App() {
   return (
-    <div className="App">
-        <CustomLayout>
-        <BrowserRouter><BaseRouter /></BrowserRouter>
-        </CustomLayout>
+    <div>
+      <BrowserRouter>
+      <div>
+      <CustomLayout></CustomLayout>
+      <Route exact path='/' component={LocationListView}/>
+      <Route exact path='/:locationID' component={LocationDetail}/>
+      </div>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Card } from 'antd';
-
+import Card from '@material-ui/core/Card';
 
 class LocationDetail extends React.Component {
 
@@ -23,7 +22,7 @@ class LocationDetail extends React.Component {
     }
     render() {
         return (
-            <Card title={this.state.location.friendly_name} extra={<a href="/">Info</a>} style={{ width: '100%' }}>
+        <Card style={{ width: '100%' }}>
                 <p>{this.state.location.county}</p>
                 <p>{this.state.location.province_state}</p>
                 <p>{this.state.location.region_country}</p>

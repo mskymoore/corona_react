@@ -1,30 +1,45 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
-const { Header, Content, Footer } = Layout;
 
-const CustomLayout = (props) => {
-    return(
-      <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1"><Link to="/">CoronaPlots</Link></Menu.Item>
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>{props.children}</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="site-layout-content"></div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>Corona Plots</Footer>
-    </Layout>
-    );
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    overflow: 'hidden',
+    padding: theme.spacing(0, 3),
+  },
+  paper: {
+    maxWidth: 400,
+    margin: `${theme.spacing(1)}px auto`,
+    padding: theme.spacing(2),
+  },
+}));
+
+const message = `test message`;
+
+export default function CustomLayout(props) {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Grid container wrap="nowrap" spacing={2}>
+          <Grid item>
+            <Avatar>W</Avatar>
+          </Grid>
+          <Grid item xl zeroMinWidth>
+            <Typography noWrap>{message}</Typography>
+            {props.children}
+          </Grid>
+        </Grid>
+      </Paper>
+    </div>
+  );
 }
-
-
-
-export default CustomLayout;
 
