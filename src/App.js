@@ -14,7 +14,7 @@ function App() {
       <div>
       <CustomLayout></CustomLayout>
       <Route exact path='/' component={LocationListView}/>
-      <Route exact path='/:locationID' component={LocationDetail}/>
+      <Route exact path='/location/:locationID' component={LocationDetail}/>
       </div>
       </BrowserRouter>
     </div>

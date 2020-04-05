@@ -10,7 +10,7 @@ class LocationListView extends React.Component {
     }
 
     componentDidMount(){
-        axios.get('http://333.isos.tech:8888/api/')
+        axios.get('http://333.isos.tech:8888/api/locations')
         .then(res => {
             this.setState({
                 locations: res.data

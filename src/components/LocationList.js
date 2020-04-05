@@ -9,10 +9,10 @@ export default function LocationList(props) {
     return(
      <List>
         {props.data.map(prop => 
-            <ListItem>
+            <ListItem key={prop.friendly_hash}>
                 <Card style={{ width: "100%" }}>
                     <p>{prop.id}</p>
-                    <Link to={'/' + prop.id}>
+                    <Link to={'location/' + prop.friendly_hash}>
                     <p>{prop.friendly_name}</p>
                     </Link>
                     <p>{prop.county}</p>
