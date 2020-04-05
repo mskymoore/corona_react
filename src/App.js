@@ -12,8 +12,8 @@ export default function App() {
       <BrowserRouter>
         <div>
             <CustomLayout></CustomLayout>
-            <Route exact path='/' component={CustomLayout}/>
-            <Route exact path='/location/:locationFriendlyHash' component={CustomLayout}/>
+            <Route exact path='/'/>
+            <Route exact path='/location/:locationFriendlyHash'/>
             <Route exact path='/province_states' />
             <Route exact path='/province_state/:province_state' />
             <Route exact path='/country_regions' />

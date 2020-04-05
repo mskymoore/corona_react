@@ -6,11 +6,11 @@ import PlotsList from '../components/PlotsList';
 
 export default function PlotsListView(location) {
     const [plots, setPlots] = useState([]);
-
-    axios.get(`http://333.isos.tech:8888/api/plots_gen/?friendly_hash=${location.friendly_hash}`)
+    console.log(location.data)
+    axios.get(`http://172.31.25.48:8888/api/plots_gen/?friendly_hash=${location.data}`)
     .then(res => {
                   console.log(res.data)
-                  axios.get(`http://333.isos.tech:8888/api/plots/${location.friendly_hash}`)
+                  axios.get(`http://172.31.25.48:8888/api/plots/${location.data}`)
                   .then(res => {
                                 setPlots(res.data)
                                 console.log(res.data);

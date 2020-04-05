@@ -1,7 +1,7 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Plot from '../containers/PlotView';
+import Plot from './Plot';
 
 
 export default function PlotsList(props) {

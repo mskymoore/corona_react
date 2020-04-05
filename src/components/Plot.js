@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '@material-us/core/Card';
+import Card from '@material-ui/core/Card';
 
 
 export default function aPlot(plot) {
