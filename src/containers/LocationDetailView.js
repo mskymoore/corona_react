@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Card from '@material-ui/core/Card';
 
-class LocationDetail extends React.Component {
+export default class LocationDetail extends React.Component {
 
     state = {
         location: {}
@@ -22,6 +22,7 @@ class LocationDetail extends React.Component {
     }
     render() {
         return (
+            <div>
             <Card style={{ width: '100%' }}>
                 <p>{this.state.location.county}</p>
                 <p>{this.state.location.province_state}</p>
@@ -31,8 +32,7 @@ class LocationDetail extends React.Component {
                 <p>{this.state.location.latitude}</p>
                 <p>{this.state.location.longitude}</p>
             </Card>
+            </div>
         )
     }
 }
-
-export default LocationDetail;
