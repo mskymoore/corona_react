@@ -1,30 +1,46 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import PlotsListView from './PlotsListView';
+import LocationAutocomplete from '../components/LocationAutocomplete';
 
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    overflow: 'hidden',
-    padding: theme.spacing(0, 3),
-  },
-  paper: {
-    maxWidth: 400,
-    margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(2),
-  },
-}));
+export default class CustomLayout extends React.Component {
+  state = {
+    location: {},
+    locations: {}
+  }
 
+  componentDidMount(){
+    
+    if (this.props.match.params.locationFriendlyHash){
+        const locationFriendlyHash = this.props.match.params.locationFriendlyHash
+        axios.get(`http://333.isos.tech:8888/api/location/${locationFriendlyHash}`)
+        .then(res => {
+                      this.setState({location: res.data});
+                      console.log(res.data)
 
-export default function CustomLayout(props) {
-  const classes = useStyles();
+                     }
+             );
+    }
+    
+    axios.get(`http://333.isos.tech:8888/api/locations`)
+    .then(res => {
+                  this.setState({locations: res.data});
+                  console.log(res.data)
+     
+                 }
+         );
+  }
 
-  return (
-    <div className={classes.root}>
-            {props.children}
-    </div>
-  );
+  render(){
+      return (
+        <div className={classes.root}>
+                <LocationAutocomplete id='autocomplete' data={this.state.locations} />
+                <PlotsListView />
+                
+        </div>
+      );
+  }
   
 }
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Plot from './containers/PlotView';
+import Plot from '../containers/PlotView';
 
 
 export default function PlotsList(props) {
@@ -11,7 +10,7 @@ export default function PlotsList(props) {
         {
         props.data.map(prop => 
                   <ListItem key={prop.name}>
-                      <Plot data={prop.name} />
+                      <Plot data={prop.plot} />
                   </ListItem>
                   )
         }
