@@ -2,10 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import { withRouter } from 'react-router';
 
 
 
-export default class AutocompleteView extends React.Component {
+class AutocompleteView extends React.Component {
     state = {
         locations: []
     }
@@ -21,6 +22,7 @@ export default class AutocompleteView extends React.Component {
 
     handleChange = (event, value) => {
         console.log('changed to ', value.friendly_name);
+        this.props.history.push(`/plot/${value.friendly_hash}`)
     }
 
     render(){
@@ -39,3 +41,5 @@ export default class AutocompleteView extends React.Component {
         )
     }
 }
+
+export default withRouter(AutocompleteView)

@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container'
-
 import Plotly from 'plotly.js';
+
 
 
 export default class PlotDetail extends React.Component {

@@ -17,7 +17,7 @@ export default function App() {
       <div>
         <BrowserRouter history={customHistory}>
           <div>
-              <CustomLayout></CustomLayout>
+              <CustomLayout history={customHistory}></CustomLayout>
               <Route exact path='/'/>
               <Route exact path='/locations' component={LocationListView} />
               <Route exact path='/location/:locationFriendlyHash' component={LocationDetail} />
