@@ -8,6 +8,7 @@ export default function PlotsList(props) {
     console.log('propslist') 
     console.log(props)
     return(
+     <div>
      <List>
         {
         props.data.map(prop => 
@@ -17,6 +18,7 @@ export default function PlotsList(props) {
                   )
         }
      </List>
+     </div>
     )
 }
 

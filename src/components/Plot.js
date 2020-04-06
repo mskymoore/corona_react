@@ -6,7 +6,9 @@ export default function aPlot(plot) {
     return(
         <div>
             <Card style={{ width: '100%' }}>
-                {plot}
+                <div>
+                {plot.data}
+                </div>
             </Card>
         </div>
     )
