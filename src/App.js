@@ -25,7 +25,7 @@ export default class App extends React.Component {
               <Route exact path='/county/:county' />
               <Route exact path='/historic_entries' />
               <Route exact path='/historic_entry/:historic_entryID' />
-              <Route exact path='/plots/:locationFriendlyHash' component={PlotsListView} />
+              <Route exact path='/plots/:locationFriendlyHash'/>
           </div>
         </BrowserRouter>
       </div>

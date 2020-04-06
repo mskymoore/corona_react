@@ -18,7 +18,6 @@ export default class CustomLayout extends React.Component {
     .then(res => {
                   this.setState({locations: res.data});
                   console.log(res.data)
-     
                  }
          );
   }
@@ -43,6 +42,7 @@ export default class CustomLayout extends React.Component {
                     onChange={this.handleChange}
                   ></Autocomplete>
               </div>
+              <p>plotslistview</p>
               <PlotsListView data={this.state.location.friendly_hash} />
           </div>
         );
@@ -50,16 +50,16 @@ export default class CustomLayout extends React.Component {
     else {
       return (
       <div>
-      <Autocomplete
-        options={this.state.locations}
-        getOptionLabel={(option) => option.friendly_name}
-        groupBy={(option) => option.firstLetter}
-        style={{ width: 300 }}
-        value={this.state.location.friendly_name}
-        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined"/>}
-        onChange={this.handleChange}
-      ></Autocomplete>
-  </div> )
+        <Autocomplete
+          options={this.state.locations}
+          getOptionLabel={(option) => option.friendly_name}
+          groupBy={(option) => option.firstLetter}
+          style={{ width: 300 }}
+          value={this.state.location.friendly_name}
+          renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined"/>}
+          onChange={this.handleChange}
+        ></Autocomplete>
+      </div> )
     }
 }
   

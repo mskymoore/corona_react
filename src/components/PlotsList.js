@@ -1,24 +1,33 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Plot from './Plot';
+import Card from '@material-ui/core/Card';
 
 
 export default function PlotsList(props) {
-    console.log('propslist') 
-    console.log(props)
-    return(
-     <div>
-     <List>
-        {
-        props.data.map(prop => 
-                  <ListItem key={prop.name}>
-                      <Plot data={prop.plot} />
-                  </ListItem>
-                  )
-        }
-     </List>
-     </div>
-    )
+        console.log('plotslist props',props.data)
+        return(
+            <div>
+            <p>list</p>
+            <List>
+               {props.data.map(prop =>
+                    <div>
+                    <p>listitem</p>
+                    <div>
+                    <ListItem key={prop.name}>
+                       <p>card</p>
+                        <Card style={{ width: '100%' }}>
+                            <p>here's a card</p>
+                            <p>{prop.name}</p>
+                        </Card>
+                    </ListItem>
+                    </div>
+                    </div>
+                    )
+               }
+            </List>
+            </div>
+           );
 }
+    
 
