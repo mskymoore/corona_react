@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Card from '@material-ui/core/Card';
 
 
 export default function LocationList(props) {
+    console.log('locationlist props',props.data)
     return(
      <List>
         {props.data.map(prop => 

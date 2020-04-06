@@ -9,32 +9,29 @@ class PlotsListView extends React.Component{
         plots: []
     }
 
-    constructor(props){
-        super(props);
-        console.log('constructing plotslistview')
-    }
-
-    componentDidMount(){
-        console.log('mounting plotslistview')
-        console.log(this.props.data)
+    componentDidMount(){        
         var plotz = [];
-        axios.get(`http://172.31.25.48:8888/api/plots_gen/?friendly_hash=${this.props.data}`)
+        const locationFriendlyHash = this.props.match.params.locationFriendlyHash
+        console.log(locationFriendlyHash)
+        axios.get(`http://172.31.25.48:8888/api/plots_gen/?friendly_hash=${locationFriendlyHash}`)
         .then(res => {
                   console.log(res.data)
-                  axios.get(`http://172.31.25.48:8888/api/plots/${this.props.data}confirmed`)
+                  axios.get(`http://172.31.25.48:8888/api/plots/${locationFriendlyHash}confirmed`)
                   .then(res => {
                                 plotz.push(res.data);
+                                console.log('confirmed response',res.data)
 
                                }
                   )
-                  axios.get(`http://172.31.25.48:8888/api/plots/${this.props.data}deaths`)
+                  axios.get(`http://172.31.25.48:8888/api/plots/${locationFriendlyHash}deaths`)
                   .then(res => {
                                 plotz.push(res.data);
-
+                                console.log('deaths response', res.data)
                                }
                   )
                   console.log('setting plotslistview state')
                   this.setState({plots: plotz})
+                  console.log('new plots state', this.state.plots)
                  }
         )
 
@@ -43,7 +40,7 @@ class PlotsListView extends React.Component{
     render() {
         return (
             <div>
-            <p>plotslist</p>
+            <h1>plotslist</h1>
             <PlotsList data={this.state.plots}/>
             </div>
         )

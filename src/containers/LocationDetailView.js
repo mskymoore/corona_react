@@ -9,8 +9,8 @@ export default class LocationDetail extends React.Component {
     }
 
     componentDidMount(){
-        const locationID = this.props.match.params.locationID
-        axios.get(`http://333.isos.tech:8888/api/location/${locationID}`)
+        const locationFriendlyHash = this.props.match.params.locationFriendlyHash
+        axios.get(`http://172.31.25.48:8888/api/location/${locationFriendlyHash}`)
         .then(res => {
                       this.setState({location: res.data});
                       console.log(res.data)

@@ -10,12 +10,13 @@ class LocationListView extends React.Component {
     }
 
     componentDidMount(){
-        axios.get('http://333.isos.tech:8888/api/locations')
+        axios.get('http://172.31.25.48:8888/api/locations')
         .then(res => {
             this.setState({
                 locations: res.data
             });
-            console.log(res.data)
+            console.log('location response', res.data)
+            console.log('new locations state', this.state.locations)
 
         }
             )
@@ -23,7 +24,7 @@ class LocationListView extends React.Component {
     render() {
         return (
             <div>
-            
+            <h1>locationlist</h1>
             <LocationList data={this.state.locations}/>
             </div>
         )
