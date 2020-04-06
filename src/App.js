@@ -5,13 +5,16 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import PlotsListView from './containers/PlotsListView';
 import LocationListView from './containers/LocationListView';
 import LocationDetail from './containers/LocationDetailView';
+import { createBrowserHistory } from "history";
+const customHistory = createBrowserHistory();
+
 
 
 
 export default function App() {
     return (
       <div>
-        <BrowserRouter>
+        <BrowserRouter history={customHistory}>
           <div>
               <CustomLayout></CustomLayout>
               <Route exact path='/'/>

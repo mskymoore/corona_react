@@ -12,7 +12,7 @@ export default function PlotsList(props) {
                {props.data.map(prop =>
                     <ListItem key={prop.name}>
                         <Card style={{ width: '100%' }}>
-                        <Link to={'location/' + prop.friendly_hash}>
+                        <Link to={'location/' + prop.name}>
                         <p>{prop.friendly_name}</p>
                         </Link>
                         <p>{prop.name}</p>

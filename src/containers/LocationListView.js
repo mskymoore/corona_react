@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import LocationList from '../components/LocationList';
+import AutoCompleteView from './AutocompleteView';
 
 
 class LocationListView extends React.Component {
@@ -24,6 +25,7 @@ class LocationListView extends React.Component {
     render() {
         return (
             <div>
+            <AutoCompleteView />
             <h1>locationlist</h1>
             <LocationList data={this.state.locations}/>
             </div>
