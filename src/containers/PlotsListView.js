@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PlotsList from '../components/PlotsList';
+import AutoCompleteView from './AutocompleteView';
 
 
 
@@ -9,10 +10,14 @@ class PlotsListView extends React.Component{
         plots: []
     }
 
+
     componentDidMount(){        
         var plotz = [];
+        
         const locationFriendlyHash = this.props.match.params.locationFriendlyHash
-        console.log(locationFriendlyHash)
+        
+        console.log('plots list friendlyhash',locationFriendlyHash)
+        
         axios.get(`http://172.31.25.48:8888/api/plots_gen/?friendly_hash=${locationFriendlyHash}`)
         .then(res => {
                   console.log(res.data)
@@ -34,15 +39,22 @@ class PlotsListView extends React.Component{
                   console.log('new plots state', this.state.plots)
                  }
         )
-
+    }
+    componentDidUpdate(){
+        console.log('updating plotslistview');
+        console.log('plostlistview state',this.state.plots);
+        this.render();
     }
     
     render() {
+        console.log('rendering plotslist')
         return (
             <div>
+            <AutoCompleteView />
             <h1>plotslist</h1>
             <PlotsList data={this.state.plots}/>
             </div>
+
         )
     }
     

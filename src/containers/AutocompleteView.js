@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import { Redirect } from 'react-router-dom';
+
 
 
 export default class AutocompleteView extends React.Component {
@@ -19,10 +19,9 @@ export default class AutocompleteView extends React.Component {
          );
     }
 
-    handleChange = (event, value) =>{
-        const link = value.friendly_hash;
-        return <Redirect to={'/location/' + {link}} />
-      }
+    handleChange = (event, value) => {
+        console.log('changed to ', value.friendly_name);
+    }
 
     render(){
         return (
@@ -33,7 +32,7 @@ export default class AutocompleteView extends React.Component {
               groupBy={(option) => option.firstLetter}
               style={{ width: 300 }}
               value={this.state.location}
-              renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined"/>}
+              renderInput={(params) => <TextField {...params} label="Locations" variant="outlined"/>}
               onChange={this.handleChange}
             ></Autocomplete>
             </div>

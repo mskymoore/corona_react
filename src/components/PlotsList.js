@@ -21,7 +21,7 @@ export default function PlotsList(props) {
                     )
                }
             </List>
-           );
+           )
 }
     
 

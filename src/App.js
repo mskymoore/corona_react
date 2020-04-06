@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import PlotsListView from './containers/PlotsListView';
 import LocationListView from './containers/LocationListView';
 import LocationDetail from './containers/LocationDetailView';
+import PlotDetail from './containers/PlotDetailView';
 import { createBrowserHistory } from "history";
 const customHistory = createBrowserHistory();
 
@@ -21,6 +22,7 @@ export default function App() {
               <Route exact path='/locations' component={LocationListView} />
               <Route exact path='/location/:locationFriendlyHash' component={LocationDetail} />
               <Route exact path='/plots/:locationFriendlyHash' component={PlotsListView} />
+              <Route exact path='/plot/:locationFriendlyHash' component={PlotDetail} />
               <Route exact path='/province_states' />
               <Route exact path='/province_state/:province_state' />
               <Route exact path='/country_regions' />
