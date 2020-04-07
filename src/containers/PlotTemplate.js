@@ -1,6 +1,8 @@
 import Plotly from 'plotly.js';
 
 
+
+
 export default function Plot(props) {
     console.log('plotprops',props)
     const data = [{

@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import AutoCompleteView from './AutocompleteView';
 
 
 
@@ -22,6 +23,7 @@ export default function CustomLayout(props) {
 
   return (
     <div className={classes.root}>
+            <AutoCompleteView/>
             {props.children}
     </div>
   );
