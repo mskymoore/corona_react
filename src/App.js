@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import CustomLayout from './containers/Layout';
 import { BrowserRouter, Route } from 'react-router-dom';
-import PlotsListView from './containers/PlotsListView';
 import LocationListView from './containers/LocationListView';
 import LocationDetail from './containers/LocationDetailView';
 import PlotDetail from './containers/PlotDetailView';
@@ -21,7 +20,6 @@ export default function App() {
               <Route exact path='/'/>
               <Route exact path='/locations' component={LocationListView} />
               <Route exact path='/location/:locationFriendlyHash' component={LocationDetail} />
-              <Route exact path='/plots/:locationFriendlyHash' component={PlotsListView} />
               <Route exact path='/plot/:locationFriendlyHash' component={PlotDetail} />
               <Route exact path='/province_states' />
               <Route exact path='/province_state/:province_state' />
