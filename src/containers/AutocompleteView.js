@@ -23,9 +23,6 @@ class AutocompleteView extends React.Component {
                   console.log(res.data)
                  }
          );
-        if (this.props.location){
-            this.setState({location: this.props.location})
-        }
     }
 
     handleChange = (event, value) => {
@@ -35,6 +32,7 @@ class AutocompleteView extends React.Component {
         this.setState({location: value})
         }
     }
+
 
     render(){
         return (

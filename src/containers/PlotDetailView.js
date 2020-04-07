@@ -16,10 +16,6 @@ export default class PlotDetail extends React.Component {
 
     componentDidMount() {
         const locationFriendlyHash = this.props.match.params.locationFriendlyHash
-        axios.get(`http://172.31.25.48:8888/api/location${locationFriendlyHash}`)
-            .then(res =>{
-                this.setState({location: res.data})
-            })
         axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${locationFriendlyHash}&case_type=confirmed`)
             .then(res => {
                 this.setState({ cplot: res.data });
@@ -166,7 +162,7 @@ export default class PlotDetail extends React.Component {
 
         return (
             <div>
-                <AutoCompleteView data={this.state.location}/>
+                <AutoCompleteView/>
                 <Card style={{ width: '100%' }}>
                     <Container>
                         <div id='c_cases_plot'>
