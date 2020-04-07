@@ -12,7 +12,7 @@ export default function Plot(props) {
             "dash": "solid"
         },
         "mode": "lines",
-        "name": "props.d",
+        "name": props.data.name,
         "showlegend": false,
         "type": props.data.type,
         "x": props.data.x,

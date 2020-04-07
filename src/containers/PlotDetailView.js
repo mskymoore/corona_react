@@ -18,7 +18,8 @@ export default class PlotDetail extends React.Component {
             .then(res => {
                 this.setState({ cplot: res.data });
                 console.log(res.data)
-                const cplot_data = {
+
+                const cases_plot_data = {
                     div: 'c_cases_plot',
                     data:
                     {
@@ -36,13 +37,116 @@ export default class PlotDetail extends React.Component {
                         yaxis: { title: 'confirmed cases' }
                     }
                 }
-                Plot(cplot_data);
+                Plot(cases_plot_data);
+                
+                const percent_growth_plot_data = {
+                    div: 'c_perc_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'percent growth',
+                        x: this.state.cplot.x_axis,
+                        y: this.state.cplot.percent_growth,
+                        xaxis: 'date',
+                        yaxis: '%'
+                    },
+                    layout: 
+                    {
+                        title: 'Confirmed Cases Percent Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: '%' }
+                    }
+                }
+                Plot(percent_growth_plot_data);
+                
+                const cases_growth_plot_data = {
+                    div: 'c_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'cases growth',
+                        x: this.state.cplot.x_axis,
+                        y: this.state.cplot.growth,
+                        xaxis: 'date',
+                        yaxis: 'cases'
+                    },
+                    layout: 
+                    {
+                        title: 'Confirmed Cases Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'confirmed cases' }
+                    }
+                }
+                Plot(cases_growth_plot_data);
+
             }
             )
         axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${locationFriendlyHash}&case_type=deaths`)
             .then(res => {
                 this.setState({ dplot: res.data });
                 console.log(res.data)
+
+                const deaths_plot_data = {
+                    div: 'd_cases_plot',
+                    data:
+                    {
+                        type: 'scatter',
+                        name: 'deaths',
+                        x: this.state.dplot.x_axis,
+                        y: this.state.dplot.cases,
+                        xaxis: 'date',
+                        yaxis: 'deaths'
+                    },
+                    layout: 
+                    {
+                        title: 'Deaths vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'deaths' }
+                    }
+                }
+                Plot(deaths_plot_data);
+
+
+                const deaths_percent_growth_plot_data = {
+                    div: 'd_perc_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'deaths percent growth',
+                        x: this.state.dplot.x_axis,
+                        y: this.state.dplot.percent_growth,
+                        xaxis: 'date',
+                        yaxis: 'percent growth'
+                    },
+                    layout: 
+                    {
+                        title: 'Deaths Percent Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: '%' }
+                    }
+                }
+                Plot(deaths_percent_growth_plot_data);
+
+
+                const deaths_growth_plot_data = {
+                    div: 'd_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'deaths growth',
+                        x: this.state.dplot.x_axis,
+                        y: this.state.dplot.growth,
+                        xaxis: 'date',
+                        yaxis: 'deaths growth'
+                    },
+                    layout: 
+                    {
+                        title: 'Deaths Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'deaths growth' }
+                    }
+                }
+                Plot(deaths_growth_plot_data);
                 
             }
             )
