@@ -3,17 +3,23 @@ import axios from 'axios';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import Plot from './PlotTemplate';
+import AutoCompleteView from './AutocompleteView';
 
 
 export default class PlotDetail extends React.Component {
 
     state = {
         cplot: {},
-        dplot: {}
+        dplot: {},
+        location: {}
     }
 
     componentDidMount() {
         const locationFriendlyHash = this.props.match.params.locationFriendlyHash
+        axios.get(`http://172.31.25.48:8888/api/location${locationFriendlyHash}`)
+            .then(res =>{
+                this.setState({location: res.data})
+            })
         axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${locationFriendlyHash}&case_type=confirmed`)
             .then(res => {
                 this.setState({ cplot: res.data });
@@ -152,10 +158,15 @@ export default class PlotDetail extends React.Component {
             )
     }
 
+    componentDidUpdate(){
+
+    }
+
     render() {
 
         return (
             <div>
+                <AutoCompleteView data={this.state.location}/>
                 <Card style={{ width: '100%' }}>
                     <Container>
                         <div id='c_cases_plot'>

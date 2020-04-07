@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import CustomLayout from './containers/Layout';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import LocationListView from './containers/LocationListView';
 import LocationDetail from './containers/LocationDetailView';
 import PlotDetail from './containers/PlotDetailView';
@@ -14,7 +14,7 @@ const customHistory = createBrowserHistory();
 export default function App() {
     return (
       <div>
-        <BrowserRouter history={customHistory}>
+        <Router history={customHistory}>
           <div>
               <CustomLayout history={customHistory}></CustomLayout>
               <Route exact path='/'/>
@@ -30,7 +30,7 @@ export default function App() {
               <Route exact path='/historic_entries' />
               <Route exact path='/historic_entry/:historic_entryID' />
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     );
 }
