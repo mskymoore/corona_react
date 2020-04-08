@@ -1,15 +1,9 @@
 import React from 'react';
 import Plots from '../components/PlotTemplate';
-import PlotContainer from '../components/Plots';
+import PlotContainer from './PlotsContainer';
 
 
 export default class PlotDetail extends React.Component {
-
-    state = {
-        cplot: {},
-        dplot: {},
-        location: {}
-    }
 
     handleDetailChange = (props) => {
         const locationFriendlyHash = this.props.match.params.locationFriendlyHash;

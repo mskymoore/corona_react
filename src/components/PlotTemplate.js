@@ -58,6 +58,8 @@ function Plot(props) {
 }
 
 export default function Plots(props){
+
+
     axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=confirmed`)
             .then(res => {
                 console.log('plots', res.data)
@@ -123,6 +125,8 @@ export default function Plots(props){
 
             }
             )
+
+
         axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=deaths`)
             .then(res => {
                 const deaths_plot_data = {
@@ -187,6 +191,74 @@ export default function Plots(props){
                 }
                 Plot(deaths_growth_plot_data);
                 
+            }
+            )
+
+            axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=recovered`)
+            .then(res => {
+                if (res.data.x_axis.length > 0){
+                    const recovered_plot_data = {
+                        div: 'r_cases_plot',
+                        data:
+                        {
+                            type: 'scatter',
+                            name: 'recovered',
+                            x: res.data.x_axis,
+                            y: res.data.cases,
+                            xaxis: 'date',
+                            yaxis: 'recovered'
+                        },
+                        layout: 
+                        {
+                            title: res.data.location + ' - Recovered vs. Date',
+                            xaxis: { title: 'date' },
+                            yaxis: { title: 'recovered' }
+                        }
+                    }
+                    Plot(recovered_plot_data);
+
+
+                    const recovered_percent_growth_plot_data = {
+                        div: 'r_perc_growth_plot',
+                        data:
+                        {
+                            type: 'bar',
+                            name: 'recovered percent growth',
+                            x: res.data.x_axis,
+                            y: res.data.percent_growth,
+                            xaxis: 'date',
+                            yaxis: 'percent growth'
+                        },
+                        layout: 
+                        {
+                            title: res.data.location + ' - Recovered Cases Percent Growth vs. Date',
+                            xaxis: { title: 'date' },
+                            yaxis: { title: '%' }
+                        }
+                    }
+                    Plot(recovered_percent_growth_plot_data);
+
+
+                    const recovered_growth_plot_data = {
+                        div: 'r_growth_plot',
+                        data:
+                        {
+                            type: 'bar',
+                            name: 'recovered growth',
+                            x: res.data.x_axis,
+                            y: res.data.growth,
+                            xaxis: 'date',
+                            yaxis: 'recovered growth'
+                        },
+                        layout: 
+                        {
+                            title: res.data.location + ' - Recovered Cases Growth vs. Date',
+                            xaxis: { title: 'date' },
+                            yaxis: { title: 'recovered growth' }
+                        }
+                    }
+                    Plot(recovered_growth_plot_data);
+                }
             }
             )
 }
