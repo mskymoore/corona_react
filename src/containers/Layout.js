@@ -22,7 +22,7 @@ export default function CustomLayout(props) {
   const classes = useStyles();
   console.log('customlayout props',props)
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
             <TitleBar />
             {props.children}
             

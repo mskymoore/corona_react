@@ -6,56 +6,56 @@ export default class PlotContainer extends React.Component {
     render() {
         return (
             <div>
-                <Container>
-                    <Card style={{ width: '100%' }}>
+                <Container >
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='c_cases_plot'>
                             </div>
                         </Container>
-                    </Card>
-                    <Card style={{ width: '100%' }}>
+                    </Card >
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='c_perc_growth_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='c_growth_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='d_cases_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='d_perc_growth_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='d_growth_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='r_cases_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='r_perc_growth_plot'>
                             </div>
                         </Container>
                     </Card>
-                    <Card style={{ width: '100%' }}>
+                    <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                         <Container>
                             <div id='r_growth_plot'>
                             </div>

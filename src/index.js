@@ -6,7 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <App />,
+  <div style={{backgroundColor: 'black'}}>
+    <App />
+  </div>,
   document.getElementById('root')
 );
 
