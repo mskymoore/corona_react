@@ -31,12 +31,16 @@ class TitleBar extends React.Component {
         }
     }
 
+    home = () => {
+        this.props.history.push("/")
+    }
+
     render(){
         return (
             <div>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton edge="start" >
+                        <IconButton edge="start" onClick={this.home}>
                             <MenuIcon />
                         </IconButton>
                         <Autocomplete
