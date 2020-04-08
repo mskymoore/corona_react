@@ -1,9 +1,8 @@
 import Plotly from 'plotly.js';
+import axios from 'axios';
 
 
-
-
-export default function Plot(props) {
+function Plot(props) {
     console.log('plotprops',props)
     const data = [{
         "hovertemplate": "x=%{x}<br>y=%{y}<extra></extra>",
@@ -53,6 +52,141 @@ export default function Plot(props) {
         "responsive": true,
         scrollZoom: true
     }
+
     return (Plotly.newPlot(props.div, data, layout, options));
 
+}
+
+export default function Plots(props){
+    axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=confirmed`)
+            .then(res => {
+                console.log('plots', res.data)
+                const cases_plot_data = {
+                    div: 'c_cases_plot',
+                    data:
+                    {
+                        type: 'scatter',
+                        name: 'confirmed cases',
+                        x: res.data.x_axis,
+                        y: res.data.cases,
+                        xaxis: 'date',
+                        yaxis: 'cases'
+                    },
+                    layout: 
+                    {
+                        title: res.data.location + ' - Confirmed Cases vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'confirmed cases' }
+                    }
+                }
+                Plot(cases_plot_data);
+                
+                const percent_growth_plot_data = {
+                    div: 'c_perc_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'percent growth',
+                        x: res.data.x_axis,
+                        y: res.data.percent_growth,
+                        xaxis: 'date',
+                        yaxis: '%'
+                    },
+                    layout: 
+                    {
+                        title: res.data.location + ' - Confirmed Cases Percent Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: '%' }
+                    }
+                }
+                Plot(percent_growth_plot_data);
+                
+                const cases_growth_plot_data = {
+                    div: 'c_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'cases growth',
+                        x: res.data.x_axis,
+                        y: res.data.growth,
+                        xaxis: 'date',
+                        yaxis: 'cases'
+                    },
+                    layout: 
+                    {
+                        title: res.data.location + ' - Confirmed Cases Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'confirmed cases' }
+                    }
+                }
+                Plot(cases_growth_plot_data);
+
+            }
+            )
+        axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=deaths`)
+            .then(res => {
+                const deaths_plot_data = {
+                    div: 'd_cases_plot',
+                    data:
+                    {
+                        type: 'scatter',
+                        name: 'deaths',
+                        x: res.data.x_axis,
+                        y: res.data.cases,
+                        xaxis: 'date',
+                        yaxis: 'deaths'
+                    },
+                    layout: 
+                    {
+                        title: res.data.location + ' - Deaths vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'deaths' }
+                    }
+                }
+                Plot(deaths_plot_data);
+
+
+                const deaths_percent_growth_plot_data = {
+                    div: 'd_perc_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'deaths percent growth',
+                        x: res.data.x_axis,
+                        y: res.data.percent_growth,
+                        xaxis: 'date',
+                        yaxis: 'percent growth'
+                    },
+                    layout: 
+                    {
+                        title: res.data.location + ' - Deaths Percent Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: '%' }
+                    }
+                }
+                Plot(deaths_percent_growth_plot_data);
+
+
+                const deaths_growth_plot_data = {
+                    div: 'd_growth_plot',
+                    data:
+                    {
+                        type: 'bar',
+                        name: 'deaths growth',
+                        x: res.data.x_axis,
+                        y: res.data.growth,
+                        xaxis: 'date',
+                        yaxis: 'deaths growth'
+                    },
+                    layout: 
+                    {
+                        title: res.data.location + ' - Deaths Growth vs. Date',
+                        xaxis: { title: 'date' },
+                        yaxis: { title: 'deaths growth' }
+                    }
+                }
+                Plot(deaths_growth_plot_data);
+                
+            }
+            )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AutoCompleteView from './AutocompleteView';
+import TitleBar from '../components/TitleBar';
 
 
 
@@ -20,11 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomLayout(props) {
   const classes = useStyles();
-
+  console.log('customlayout props',props)
   return (
     <div className={classes.root}>
-            <AutoCompleteView/>
+            <TitleBar />
             {props.children}
+            
     </div>
   );
 }

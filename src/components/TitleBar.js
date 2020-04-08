@@ -10,10 +10,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 
 
-class AutocompleteView extends React.Component {
+class TitleBar extends React.Component {
     state = {
-        locations: [],
-        location: {}
+        locations: []
     }
 
     componentDidMount(){
@@ -27,12 +26,10 @@ class AutocompleteView extends React.Component {
 
     handleChange = (event, value) => {
         if (value){
-        console.log('changed to ', value.friendly_name);
-        this.props.history.push(`/plot/${value.friendly_hash}`)
-        this.setState({location: value})
+            this.setState({location: value}) 
+            this.props.history.push(`/plot/${value.friendly_hash}`)
         }
     }
-
 
     render(){
         return (
@@ -51,6 +48,7 @@ class AutocompleteView extends React.Component {
                             renderInput={(params) => <TextField {...params} label="Locations" variant="outlined" />}
                             onChange={this.handleChange}
                         ></Autocomplete>
+                        <div><h2>Covid 19 Plots</h2></div>
                     </Toolbar>
                 </AppBar>
             
@@ -59,4 +57,4 @@ class AutocompleteView extends React.Component {
     }
 }
 
-export default withRouter(AutocompleteView)
+export default withRouter(TitleBar)

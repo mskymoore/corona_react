@@ -3,7 +3,6 @@ import './App.css';
 import CustomLayout from './containers/Layout';
 import { Router, Route } from 'react-router-dom';
 import LocationListView from './containers/LocationListView';
-import LocationDetail from './containers/LocationDetailView';
 import PlotDetail from './containers/PlotDetailView';
 import { createBrowserHistory } from "history";
 const customHistory = createBrowserHistory();
@@ -17,9 +16,8 @@ export default function App() {
         <Router history={customHistory}>
           <div>
               <CustomLayout history={customHistory}></CustomLayout>
-              <Route exact path='/'/>
+              <Route exact path='/' component={PlotDetail} />
               <Route exact path='/locations' component={LocationListView} />
-              <Route exact path='/location/:locationFriendlyHash' component={LocationDetail} />
               <Route exact path='/plot/:locationFriendlyHash' component={PlotDetail} />
               <Route exact path='/province_states' />
               <Route exact path='/province_state/:province_state' />
