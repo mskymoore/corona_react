@@ -12,10 +12,10 @@ export default class PlotContainer extends React.Component {
             <div>
                 <Container >
                     {plots.map(plot =>
-                            <Fade in={true} timeout={1000}>
+                            <Fade in={true} timeout={2500}>
                                 <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px'}}>
                                     <Container>
-                                        <Fade in={true} timeout={3000}>
+                                        <Fade in={true} timeout={2500}>
                                             <div id={plot} style={{ margin: '15px 0px 15px'}}>
                                             </div>
                                         </Fade>

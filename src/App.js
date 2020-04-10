@@ -5,6 +5,7 @@ import { Router, Route } from 'react-router-dom';
 import LocationListView from './containers/LocationListView';
 import PlotDetail from './containers/PlotDetailView';
 import { createBrowserHistory } from "history";
+import HistoricEntryCard from './components/HistoricEntryCard';
 const customHistory = createBrowserHistory();
 
 
@@ -26,7 +27,7 @@ export default function App() {
               <Route exact path='/counties' />
               <Route exact path='/county/:county' />
               <Route exact path='/historic_entries' />
-              <Route exact path='/historic_entry/:historic_entryID' />
+              <Route exact path='/historic_entry' component={HistoricEntryCard}/>
           </div>
         </Router>
       </div>

@@ -57,208 +57,101 @@ function Plot(props) {
 
 }
 
+function PlotData(div, type, name, xdata, ydata, title, xaxis, yaxis){
+    const plot_data = {
+        div: div,
+        data:
+        {
+            type: type,
+            name: name,
+            x: xdata,
+            y: ydata,
+            xaxis: 'date',
+            yaxis: 'cases'
+        },
+        layout: 
+        {
+            title: title,
+            xaxis: { title: xaxis },
+            yaxis: { title: yaxis }
+        }
+    }
+    return(plot_data);
+}
+
+
 export default function Plots(props){
 
 
     axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=confirmed`)
             .then(res => {
                 console.log('plots', res.data)
-                const cases_plot_data = {
-                    div: 'c_cases_plot',
-                    data:
-                    {
-                        type: 'scatter',
-                        name: 'confirmed cases',
-                        x: res.data.x_axis,
-                        y: res.data.cases,
-                        xaxis: 'date',
-                        yaxis: 'cases'
-                    },
-                    layout: 
-                    {
-                        title: res.data.location + ' - Total Confirmed Cases vs. Date',
-                        xaxis: { title: 'date' },
-                        yaxis: { title: 'confirmed cases' }
-                    }
-                }
-                Plot(cases_plot_data);
-                
-                const percent_growth_plot_data = {
-                    div: 'c_perc_growth_plot',
-                    data:
-                    {
-                        type: 'bar',
-                        name: 'percent growth',
-                        x: res.data.x_axis,
-                        y: res.data.percent_growth,
-                        xaxis: 'date',
-                        yaxis: '%'
-                    },
-                    layout: 
-                    {
-                        title: res.data.location + ' - Confirmed Cases Percent Growth vs. Date',
-                        xaxis: { title: 'date' },
-                        yaxis: { title: '%' }
-                    }
-                }
-                Plot(percent_growth_plot_data);
-                
-                const cases_growth_plot_data = {
-                    div: 'c_growth_plot',
-                    data:
-                    {
-                        type: 'bar',
-                        name: 'cases growth',
-                        x: res.data.x_axis,
-                        y: res.data.growth,
-                        xaxis: 'date',
-                        yaxis: 'cases'
-                    },
-                    layout: 
-                    {
-                        title: res.data.location + ' - New Confirmed Cases vs. Date',
-                        xaxis: { title: 'date' },
-                        yaxis: { title: 'confirmed cases' }
-                    }
-                }
-                Plot(cases_growth_plot_data);
-
+                Plot(PlotData(
+                    'c_cases_plot', 'scatter', 'confirmed_cases',
+                    res.data.x_axis, res.data.cases, 
+                    res.data.location + ' - Total Confirmed Cases vs. Date',
+                    'date', 'total confirmed cases'
+                ));
+                Plot(PlotData(
+                    'c_perc_growth_plot', 'bar', 'confirmed_percent_growth',
+                    res.data.x_axis, res.data.percent_growth, 
+                    res.data.location + ' - Confirmed Cases Percent Growth vs. Date',
+                    'date', '% growth'
+                ));
+                Plot(PlotData(
+                    'c_growth_plot', 'bar', 'new_confirmed',
+                    res.data.x_axis, res.data.growth, 
+                    res.data.location + ' - Confirmed Cases vs. Date',
+                    'date', 'confirmed cases'
+                ));
             }
             )
 
 
         axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=deaths`)
             .then(res => {
-                const deaths_plot_data = {
-                    div: 'd_cases_plot',
-                    data:
-                    {
-                        type: 'scatter',
-                        name: 'deaths',
-                        x: res.data.x_axis,
-                        y: res.data.cases,
-                        xaxis: 'date',
-                        yaxis: 'deaths'
-                    },
-                    layout: 
-                    {
-                        title: res.data.location + ' - Total Deaths vs. Date',
-                        xaxis: { title: 'date' },
-                        yaxis: { title: 'deaths' }
-                    }
-                }
-                Plot(deaths_plot_data);
-
-
-                const deaths_percent_growth_plot_data = {
-                    div: 'd_perc_growth_plot',
-                    data:
-                    {
-                        type: 'bar',
-                        name: 'deaths percent growth',
-                        x: res.data.x_axis,
-                        y: res.data.percent_growth,
-                        xaxis: 'date',
-                        yaxis: 'percent growth'
-                    },
-                    layout: 
-                    {
-                        title: res.data.location + ' - Deaths Percent Growth vs. Date',
-                        xaxis: { title: 'date' },
-                        yaxis: { title: '%' }
-                    }
-                }
-                Plot(deaths_percent_growth_plot_data);
-
-
-                const deaths_growth_plot_data = {
-                    div: 'd_growth_plot',
-                    data:
-                    {
-                        type: 'bar',
-                        name: 'deaths growth',
-                        x: res.data.x_axis,
-                        y: res.data.growth,
-                        xaxis: 'date',
-                        yaxis: 'deaths growth'
-                    },
-                    layout: 
-                    {
-                        title: res.data.location + ' - New Deaths vs. Date',
-                        xaxis: { title: 'date' },
-                        yaxis: { title: 'deaths growth' }
-                    }
-                }
-                Plot(deaths_growth_plot_data);
+                Plot(PlotData(
+                    'd_cases_plot', 'scatter', 'deaths',
+                    res.data.x_axis, res.data.cases, 
+                    res.data.location + ' - Total Deaths vs. Date',
+                    'date', 'total deaths'
+                ));
+                Plot(PlotData(
+                    'd_perc_growth_plot', 'bar', 'deaths_percent_growth',
+                    res.data.x_axis, res.data.percent_growth, 
+                    res.data.location + ' - Deaths Percent Growth vs. Date',
+                    'date', '% growth'
+                ));
+                Plot(PlotData(
+                    'd_growth_plot', 'bar', 'new_deaths',
+                    res.data.x_axis, res.data.growth, 
+                    res.data.location + ' - Deaths vs. Date',
+                    'date', 'deaths'
+                ));
                 
             }
             )
 
             axios.get(`http://172.31.25.48:8888/api/series/?friendly_hash=${props.locationFriendlyHash}&case_type=recovered`)
             .then(res => {
-                if (res.data.x_axis.length > 0){
-                    const recovered_plot_data = {
-                        div: 'r_cases_plot',
-                        data:
-                        {
-                            type: 'scatter',
-                            name: 'recovered',
-                            x: res.data.x_axis,
-                            y: res.data.cases,
-                            xaxis: 'date',
-                            yaxis: 'recovered'
-                        },
-                        layout: 
-                        {
-                            title: res.data.location + ' - Total Recovered Cases vs. Date',
-                            xaxis: { title: 'date' },
-                            yaxis: { title: 'recovered' }
-                        }
-                    }
-                    Plot(recovered_plot_data);
-
-
-                    const recovered_percent_growth_plot_data = {
-                        div: 'r_perc_growth_plot',
-                        data:
-                        {
-                            type: 'bar',
-                            name: 'recovered percent growth',
-                            x: res.data.x_axis,
-                            y: res.data.percent_growth,
-                            xaxis: 'date',
-                            yaxis: 'percent growth'
-                        },
-                        layout: 
-                        {
-                            title: res.data.location + ' - Recovered Cases Percent Growth vs. Date',
-                            xaxis: { title: 'date' },
-                            yaxis: { title: '%' }
-                        }
-                    }
-                    Plot(recovered_percent_growth_plot_data);
-
-
-                    const recovered_growth_plot_data = {
-                        div: 'r_growth_plot',
-                        data:
-                        {
-                            type: 'bar',
-                            name: 'recovered growth',
-                            x: res.data.x_axis,
-                            y: res.data.growth,
-                            xaxis: 'date',
-                            yaxis: 'recovered growth'
-                        },
-                        layout: 
-                        {
-                            title: res.data.location + ' - New Recovered Cases vs. Date',
-                            xaxis: { title: 'date' },
-                            yaxis: { title: 'recovered growth' }
-                        }
-                    }
-                    Plot(recovered_growth_plot_data);
-                }
+                Plot(PlotData(
+                    'r_cases_plot', 'scatter', 'recovered_cases',
+                    res.data.x_axis, res.data.cases, 
+                    res.data.location + ' - Total Recoveries vs. Date',
+                    'date', 'total recoveries'
+                ));
+                Plot(PlotData(
+                    'r_perc_growth_plot', 'bar', 'recovered_percent_growth',
+                    res.data.x_axis, res.data.percent_growth, 
+                    res.data.location + ' - Recoveries Percent Growth vs. Date',
+                    'date', '% growth'
+                ));
+                Plot(PlotData(
+                    'r_growth_plot', 'bar', 'new_recovered',
+                    res.data.x_axis, res.data.growth, 
+                    res.data.location + ' - Recoveries vs. Date',
+                    'date', 'recoveries'
+                ));
             }
             )
 }
