@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-
 class TitleBar extends React.Component {
     state = {
         locations: []
@@ -26,8 +25,8 @@ class TitleBar extends React.Component {
 
     handleChange = (event, value) => {
         if (value){
-            this.setState({location: value}) 
-            this.props.history.push(`/plot/${value.friendly_hash}`)
+            this.setState({location: value, loading: true});
+            this.props.history.push(`/plot/${value.friendly_hash}`);
         }
     }
 
@@ -44,15 +43,19 @@ class TitleBar extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Autocomplete
+                            id='autocompleter'
                             options={this.state.locations}
                             getOptionLabel={(option) => option.friendly_name}
                             groupBy={(option) => option.firstLetter}
-                            style={{ width: 300 }}
+                            style={{ width: '100%' }}
                             value={this.state.location}
-                            renderInput={(params) => <TextField {...params} label="Locations" variant="outlined" />}
+                            renderInput={(params) => <TextField {...params} label="Covid 19 Plot Locations" variant="outlined" />}
                             onChange={this.handleChange}
+                            autoComplete={true}
+                            autoHighlight={true}
+                            clearOnEscape={true}
+                            selectOnFocus={true}
                         ></Autocomplete>
-                        <div><h2>Covid 19 Plots</h2></div>
                     </Toolbar>
                 </AppBar>
             

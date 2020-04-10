@@ -76,7 +76,7 @@ export default function Plots(props){
                     },
                     layout: 
                     {
-                        title: res.data.location + ' - Confirmed Cases vs. Date',
+                        title: res.data.location + ' - Total Confirmed Cases vs. Date',
                         xaxis: { title: 'date' },
                         yaxis: { title: 'confirmed cases' }
                     }
@@ -116,7 +116,7 @@ export default function Plots(props){
                     },
                     layout: 
                     {
-                        title: res.data.location + ' - Confirmed Cases Growth vs. Date',
+                        title: res.data.location + ' - New Confirmed Cases vs. Date',
                         xaxis: { title: 'date' },
                         yaxis: { title: 'confirmed cases' }
                     }
@@ -142,7 +142,7 @@ export default function Plots(props){
                     },
                     layout: 
                     {
-                        title: res.data.location + ' - Deaths vs. Date',
+                        title: res.data.location + ' - Total Deaths vs. Date',
                         xaxis: { title: 'date' },
                         yaxis: { title: 'deaths' }
                     }
@@ -184,7 +184,7 @@ export default function Plots(props){
                     },
                     layout: 
                     {
-                        title: res.data.location + ' - Deaths Growth vs. Date',
+                        title: res.data.location + ' - New Deaths vs. Date',
                         xaxis: { title: 'date' },
                         yaxis: { title: 'deaths growth' }
                     }
@@ -210,7 +210,7 @@ export default function Plots(props){
                         },
                         layout: 
                         {
-                            title: res.data.location + ' - Recovered vs. Date',
+                            title: res.data.location + ' - Total Recovered Cases vs. Date',
                             xaxis: { title: 'date' },
                             yaxis: { title: 'recovered' }
                         }
@@ -252,7 +252,7 @@ export default function Plots(props){
                         },
                         layout: 
                         {
-                            title: res.data.location + ' - Recovered Cases Growth vs. Date',
+                            title: res.data.location + ' - New Recovered Cases vs. Date',
                             xaxis: { title: 'date' },
                             yaxis: { title: 'recovered growth' }
                         }
