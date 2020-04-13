@@ -90,7 +90,7 @@ function PlotLoop(item, index, arr){
         count_increase.push(item.count_increase)
         count_percent_increase.push(item.count_percent_increase)
     }
-    axios.get(`http://333.isos.tech/api/location/entries/${item.case_type}/${item.hash}`)
+    axios.get(`https://333.isos.tech/api/location/entries/${item.case_type}/${item.hash}`)
     .then(res => { 
         res.data.forEach(buildData);
         Plot(PlotData(

@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-    baseURL: 'http://333.isos.tech/api/'
+    baseURL: 'https://333.isos.tech/api/'
 })
 
 export default class PlotDetail extends React.Component {

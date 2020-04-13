@@ -15,7 +15,7 @@ class TitleBar extends React.Component {
     }
 
     componentDidMount(){
-        axios.get(`http://333.isos.tech/api/locations`)
+        axios.get(`https://333.isos.tech/api/locations`)
         .then(res => {
                   this.setState({locations: res.data});
                   console.log(res.data)
