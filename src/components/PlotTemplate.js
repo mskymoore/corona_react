@@ -86,39 +86,36 @@ function PlotLoop(item, index, arr){
     var count_percent_increase = []
 
     function buildData(item, index, arr){
-        console.log('inbuilddata')
         x_axis.push(item.date)
         count.push(item.count)
         count_increase.push(item.count_increase)
         count_percent_increase.push(item.count_percent_increase)
     }
-
-    axios.get(`http://172.31.25.48:8888/location/entries/${item.case_status_type_id}/${item.hashash}`)
+    axios.get(`http://172.31.25.48:8888/api/location/entries/${item.case_type}/${item.hash}`)
     .then(res => { 
-        res.forEach(buildData);
+        res.data.forEach(buildData);
         Plot(PlotData(
             item.divs[0], 'scatter', item.divs[0],
             x_axis, count, 
-            item.location + ' - Total ' + item.case_status_type_id.charAt(0).toUpperCase() + item.case_status_type_id.slice(1) + ' vs. Date',
-            'date', 'total ' + item.case_status_type_id
+            item.location + ' - Total ' + item.case_type.charAt(0).toUpperCase() + item.case_type.slice(1) + ' vs. Date',
+            'date', 'total ' + item.case_type
         ));
         Plot(PlotData(
             item.divs[1], 'bar', item.divs[1],
-            res.data.x_axis, res.data.percent_growth, 
-            res.data.location + ' - '+ item.case_status_type_id.charAt(0).toUpperCase() + item.case_status_type_id.slice(1) +' Percent Growth vs. Date',
-            'date', '% growth ' + item.case_status_type_id
+            x_axis, count_percent_increase, 
+            item.location + ' - '+ item.case_type.charAt(0).toUpperCase() + item.case_type.slice(1) +' Percent Growth vs. Date',
+            'date', item.case_type + '% growth '
         ));
         Plot(PlotData(
             item.divs[2], 'bar', item.divs[2],
-            res.data.x_axis, res.data.growth, 
-            res.data.location + ' - New '+ item.case_status_type_id.charAt(0).toUpperCase() + item.case_status_type_id.slice(1) +' vs. Date',
-            'date', 'new ' + item.case_status_type_id
+            x_axis, count_increase, 
+            item.location + ' - New '+ item.case_type.charAt(0).toUpperCase() + item.case_type.slice(1) +' vs. Date',
+            'date', 'new ' + item.case_type
         )); 
     });
 }
 
 export default function Plots(props){
-    console.log('plots props', props)
     props.forEach(PlotLoop)
 
 }
