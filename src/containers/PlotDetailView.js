@@ -1,35 +1,86 @@
 import React from 'react';
-import Plots from '../components/PlotTemplate';
-import PlotContainer from './PlotsContainer';
+//import Plots from '../components/PlotTemplate';
+import Card from '@material-ui/core/Card';
+import Fade from '@material-ui/core/Fade';
+import Container from '@material-ui/core/Container';
+//import PlotContainer from './PlotsContainer';
+import axios from 'axios';
 
+
+
+const api = axios.create({
+    baseURL: 'http://172.31.25.48:8888/api/'
+})
 
 export default class PlotDetail extends React.Component {
 
-    handleDetailChange = (props) => {
-        const locationFriendlyHash = this.props.match.params.locationFriendlyHash;
-        Plots({locationFriendlyHash: locationFriendlyHash})
-    }
-
-    getSnapshotBeforeUpdate(prevProps) {
-        return { updateRequired: prevProps.match.params.locationFriendlyHash !== this.props.match.params.locationFriendlyHash };
-      }
-
-    componentDidMount() {
-        if(this.props.match.params.locationFriendlyHash){
-            this.handleDetailChange({update: false})
+    constructor(props) {
+        super(props);
+        this.state = {
+            div_plots: [],
+            template_plots: [],
+            plots: {
+                    confirmed: ['c_cases_plot', 'c_perc_growth_plot', 'c_growth_plot'],
+                    deaths: ['d_cases_plot', 'd_perc_growth_plot', 'd_growth_plot'],
+                    recovered: ['r_cases_plot', 'r_perc_growth_plot', 'r_growth_plot']
+                   },
+            hash: ''
         }
+        api.get(`location/case_types/${this.props.match.params.locationFriendlyHash}`)
+            .then(res => {
+                console.log(res.data)
+                var plot_divs = []
+                res.data.map(case_type => {
+                    this.state.plots[case_type.case_type].map(plot_div => {
+                        plot_divs.push(plot_div)
+                    });
+                });
+                this.setState({
+                    div_plots: plot_divs
+                })
+            });
     }
 
-    componentDidUpdate(PrevProps, PrevState, snapshot){
-        if (snapshot.updateRequired){
-            this.handleDetailChange({update: true})
+
+    componentDidMount(){
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.locationFriendlyHash !== prevProps.match.params.locationFriendlyHash){
+            api.get(`location/case_types/${this.props.match.params.locationFriendlyHash}`)
+            .then(res => {
+                console.log(res.data)
+                res.data.map(case_type => {
+                    this.state.plots[case_type.case_type].map(plot_div => {
+                        this.state.div_plots.push(plot_div)
+                    });
+                });
+            });
+            console.log('didupdate', this.state)
         }
     }
 
     render() {
+        console.log('render', this.state)
         return (
+            
             <div>
-                <PlotContainer />
+                <div><p>hello world</p></div>
+                <Container >
+                    {this.state.div_plots.map(plot =>
+                        <Fade in={true} timeout={2500}>
+                            <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px' }}>
+                                <Container>
+                                    <Fade in={true} timeout={2500}>
+                                        <div id={plot} style={{ margin: '15px 0px 15px' }}>
+                                            <p>this is text</p>
+                                        </div>
+                                    </Fade>
+                                </Container>
+                            </Card >
+                        </Fade>
+                    )}
+                </Container>
             </div>
 
         )
