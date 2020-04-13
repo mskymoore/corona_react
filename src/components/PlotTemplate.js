@@ -3,7 +3,6 @@ import axios from 'axios';
 
 
 function Plot(props) {
-    console.log('plotprops',props)
     const data = [{
         "hovertemplate": "x=%{x}<br>y=%{y}<extra></extra>",
         "legendgroup": "",
@@ -91,7 +90,7 @@ function PlotLoop(item, index, arr){
         count_increase.push(item.count_increase)
         count_percent_increase.push(item.count_percent_increase)
     }
-    axios.get(`http://172.31.25.48:8888/api/location/entries/${item.case_type}/${item.hash}`)
+    axios.get(`http://333.isos.tech/api/location/entries/${item.case_type}/${item.hash}`)
     .then(res => { 
         res.data.forEach(buildData);
         Plot(PlotData(

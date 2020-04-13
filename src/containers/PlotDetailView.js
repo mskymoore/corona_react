@@ -8,7 +8,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-    baseURL: 'http://172.31.25.48:8888/api/'
+    baseURL: 'http://333.isos.tech/api/'
 })
 
 export default class PlotDetail extends React.Component {
@@ -27,7 +27,6 @@ export default class PlotDetail extends React.Component {
         }
         api.get(`location/${this.props.match.params.locationFriendlyHash}`)
             .then(res => {
-                console.log('constructor',res.data)
                 var plot_divs = []
                 var plot_templates = []
                 res.data.case_types.map(case_type => {
@@ -47,22 +46,39 @@ export default class PlotDetail extends React.Component {
                 });
                 this.setState({
                     div_plots: plot_divs,
-                    template_plots: plot_templates
+                    template_plots: plot_templates,
+                    hash: this.props.match.params.locationFriendlyHash
                 })
                 Plots(this.state.template_plots)
             });
     }
 
 
+    getSnapshotBeforeUpdate(prevProps, prevState){
+        console.log('snapshot state', prevState)
+        console.log('snapshot props', prevProps) 
+        console.log('didupdate state', this.state)
+        console.log('didupdate props', this.props)
+        if (prevState.hash !== this.state.hash){
+            return true
+        }
+        else if (prevProps.match.params.locationFriendlyHash !== this.props.match.params.locationFriendlyHash){
+            return true
+        }
+        else {
+            return false
+        }
+    }   
+
     componentDidMount(){
 
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.match.params.locationFriendlyHash !== prevProps.match.params.locationFriendlyHash){
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('snapshot snapshot', snapshot)
+        if (snapshot){
             api.get(`location/${this.props.match.params.locationFriendlyHash}`)
             .then(res => {
-                console.log('update',res.data)
                 var plot_divs = []
                 var plot_templates = []
                 res.data.case_types.map(case_type => {
@@ -82,18 +98,16 @@ export default class PlotDetail extends React.Component {
                 });
                 this.setState({
                     div_plots: plot_divs,
-                    template_plots: plot_templates
+                    template_plots: plot_templates,
+                    hash: this.props.match.params.locationFriendlyHash
                 })
             });
-            console.log('didupdate', this.state)
             Plots(this.state.template_plots)
         }
     }
 
     render() {
-        console.log('render', this.state)
         return (
-            
             <div>
                 <Container >
                     {this.state.div_plots.map(plot =>
