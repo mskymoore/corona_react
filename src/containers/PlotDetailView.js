@@ -55,10 +55,6 @@ export default class PlotDetail extends React.Component {
 
 
     getSnapshotBeforeUpdate(prevProps, prevState){
-        console.log('snapshot state', prevState)
-        console.log('snapshot props', prevProps) 
-        console.log('didupdate state', this.state)
-        console.log('didupdate props', this.props)
         if (prevState.hash !== this.state.hash){
             return true
         }
