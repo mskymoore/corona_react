@@ -107,10 +107,10 @@ export default class PlotDetail extends React.Component {
             <div>
                 <Container >
                     {this.state.div_plots.map(plot =>
-                        <Fade in={true} timeout={2500} key={plot}>
+                        <Fade in={true} timeout={5000} key={plot}>
                             <Card style={{ width: '100%', backgroundColor: 'DimGrey', margin: '11px 10px 11px 0px' }}>
                                 <Container>
-                                    <Fade in={true} timeout={2500}>
+                                    <Fade in={true} timeout={5000}>
                                         <div id={plot} style={{ margin: '15px 0px 15px' }}>
                                         </div>
                                     </Fade>
